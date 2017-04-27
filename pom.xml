@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>Huxley</groupId>
+    <artifactId>com.thain.discord</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Plugins versions -->
+        <maven.compiler.version>3.6.0</maven.compiler.version>
+        <maven.shade.version>3.0.0</maven.shade.version>
+
+        <!-- Dependencies versions -->
+        <java.compiler.source>1.8</java.compiler.source>
+        <java.compiler.target>1.8</java.compiler.target>
+        <discord4j.version>2.8.0</discord4j.version>
+        <jackson.version>2.8.8</jackson.version>
+    </properties>
+
+    <repositories>
+        <repository> <!-- This repo fixes issues with transitive dependencies -->
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Discord -->
+        <dependency>
+            <groupId>com.github.austinv11</groupId>
+            <artifactId>Discord4j</artifactId>
+            <version>${discord4j.version}</version>
+            <!-- <classifier>shaded</classifier> -->
+        </dependency>
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compilation part -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.compiler.source}</source>
+                    <target>${java.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <!-- Shade part -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.version}</version>
+                <executions>
+                    <!-- Run shade goal on package phase -->
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>huxley.HuxleyApp</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

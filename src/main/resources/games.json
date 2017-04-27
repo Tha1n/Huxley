@@ -1,0 +1,13 @@
+{
+    "games" : [
+        {
+            "name" : "Mass Effect 3",
+            "aliases" : ["me3"]
+        },
+        {
+            "name" : "Mass Effect : Andromeda",
+            "aliases" : ["mea", "me:a"]
+        }
+    ]
+
+}
