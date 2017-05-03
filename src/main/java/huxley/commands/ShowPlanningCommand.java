@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ShowPlanningCommand extends AbstractCommand {
 
     public ShowPlanningCommand() {
-        super("ShowPlanning", Pattern.compile("^" + Utils.COMMAND_PREFIX + "sp"));
+        super("ShowPlanning", Pattern.compile(String.format("^%ssp", Utils.COMMAND_PREFIX)));
     }
 
     @Override
@@ -29,6 +29,7 @@ public class ShowPlanningCommand extends AbstractCommand {
 
                 String content = String.format("%s : %s", emitter.mention(), p.formatPlanning());
                 DiscordMessageUtils.sendMessage(emitter.getOrCreatePMChannel(), content);
+                return true;
             } /* else {
                 String content = String.format("%s : I don't know you (yet)!", emitter.mention());
                 DiscordMessageUtils.sendMessage(message.getChannel(), content);
