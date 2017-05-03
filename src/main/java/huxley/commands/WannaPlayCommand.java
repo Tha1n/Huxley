@@ -35,7 +35,7 @@ public class WannaPlayCommand extends AbstractCommand {
 
     public WannaPlayCommand() {
         super("WannaPlay",
-                Pattern.compile(String.format("^(%swp)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", Utils.COMMAND_PREFIX, Utils.MIN_SIZE_ALIASES, Utils.MAX_SIZE_ALIASES)));
+                Pattern.compile(String.format("^(%s%s)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", Utils.COMMAND_PREFIX, COMMANDS_PREFIX.getProperty("wanna.play.prefix"), Utils.MIN_SIZE_ALIASES, Utils.MAX_SIZE_ALIASES)));
 
         dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     }
@@ -57,7 +57,7 @@ public class WannaPlayCommand extends AbstractCommand {
                 if (datePart == null) {
                     LocalDateTime today = LocalDateTime.now();
                     DecimalFormat mFormat= new DecimalFormat("00");
-                    datePart = String.format("%d/%s", today.getDayOfMonth(), mFormat.format(today.getMonthValue()));
+                    datePart = String.format("%s/%s", mFormat.format(today.getDayOfMonth()), mFormat.format(today.getMonthValue()));
                 }
 
                 start = LocalDateTime.parse(String.format("%s/%s%s%s", datePart, yearPart, StringUtils.SPACE, this.matcher.group(GROUP_HOUR_START_NUMBER)), dtf);

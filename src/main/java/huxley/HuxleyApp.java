@@ -15,7 +15,7 @@ import java.util.Properties;
  */
 public class HuxleyApp {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HuxleyApp.class);
-    private static final Properties CONFIGURATION = new Properties();
+    public static final Properties CONFIGURATION = new Properties();
     public static final Properties LANGUAGE = new Properties();
     static {
         try {

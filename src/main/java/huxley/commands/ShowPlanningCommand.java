@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class ShowPlanningCommand extends AbstractCommand {
 
     public ShowPlanningCommand() {
-        super("ShowPlanning", Pattern.compile(String.format("^%ssp", Utils.COMMAND_PREFIX)));
+        super("ShowPlanning", Pattern.compile(String.format("^%s%s", Utils.COMMAND_PREFIX, COMMANDS_PREFIX.getProperty("show.planning.prefix"))));
     }
 
     @Override

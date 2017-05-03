@@ -12,7 +12,7 @@ public class HuxleyCommand extends AbstractCommand {
 
     public HuxleyCommand() {
         // TODO
-        super("Huxley", Pattern.compile(String.format("^%shuxley", Utils.COMMAND_PREFIX)));
+        super("Huxley", Pattern.compile(String.format("^%s%s", Utils.COMMAND_PREFIX, COMMANDS_PREFIX.getProperty("huxley.prefix"))));
     }
 
     @Override
