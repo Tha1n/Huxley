@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 public class HuxleyCommand extends AbstractCommand {
 
     public HuxleyCommand() {
-        // TODO
-        super("Huxley", Pattern.compile(String.format("^%s%s", Utils.COMMAND_PREFIX, COMMANDS_PREFIX.getProperty("huxley.prefix"))));
+        super(COMMANDS_PROPERTIES.getProperty("huxley.name"),
+        		Pattern.compile(String.format("^%s%s", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"))));
     }
 
     @Override

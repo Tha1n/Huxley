@@ -1,32 +1,32 @@
 package huxley.model.discord;
 
-import huxley.HuxleyApp;
-import huxley.commands.ICommand;
-import huxley.commands.ShowPlanningCommand;
-import huxley.commands.WannaPlayCommand;
-import huxley.model.games.GameCalendar;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import sx.blah.discord.api.ClientBuilder;
-import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.util.DiscordException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import huxley.HuxleyApp;
+import huxley.commands.HuxleyCommand;
+import huxley.commands.ICommand;
+import huxley.commands.ShowPlanningCommand;
+import huxley.commands.WannaPlayCommand;
+import huxley.model.games.GameCalendar;
+import sx.blah.discord.api.ClientBuilder;
+import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.util.DiscordException;
 
 /**
  * TODO --> Adding Comment
  * Created by alxqu on 16/04/2017.
  */
 public class DiscordClient {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(DiscordClient.class);
     private static DiscordClient instance;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DiscordClient.class);
-
-    private static IDiscordClient discordClient;
+    private IDiscordClient discordClient;
     private List<ICommand> commands;
 
     public static GameCalendar gameCalendar = new GameCalendar();
@@ -55,6 +55,7 @@ public class DiscordClient {
         // TODO Adding other commands further
         commands.add(new WannaPlayCommand());
         commands.add(new ShowPlanningCommand());
+        commands.add(new HuxleyCommand());
     }
 
     private static DiscordClient getInstance() {

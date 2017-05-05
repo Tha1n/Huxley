@@ -1,20 +1,19 @@
 package huxley.listeners;
 
-import huxley.HuxleyApp;
-import huxley.model.discord.DiscordClient;
-import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.ReadyEvent;
-import sx.blah.discord.util.Image;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import huxley.HuxleyApp;
+import huxley.model.discord.DiscordClient;
+import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.api.events.EventSubscriber;
+import sx.blah.discord.handle.impl.events.ReadyEvent;
+import sx.blah.discord.util.Image;
 
 /**
  * TODO --> Adding Comment

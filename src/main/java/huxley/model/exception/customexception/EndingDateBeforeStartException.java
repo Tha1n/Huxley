@@ -14,22 +14,23 @@ import java.time.LocalDateTime;
  */
 public class EndingDateBeforeStartException implements IException {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(EndingDateBeforeStartException.class);
-    private final LocalDateTime begin;
-    private final LocalDateTime end;
+	private static final Logger LOGGER = LoggerFactory.getLogger(EndingDateBeforeStartException.class);
+	private final LocalDateTime begin;
+	private final LocalDateTime end;
 
-    /**
-     * Constructor
-     * @param begin Begin hour.
-     * @param end Ending hour.
-     */
-    public EndingDateBeforeStartException(LocalDateTime begin, LocalDateTime end) {
-        this.begin = begin;
-        this.end = end;
-    }
+	/**
+	 * Constructor
+	 * @param begin Begin hour.
+	 * @param end Ending hour.
+	 */
+	public EndingDateBeforeStartException(LocalDateTime begin, LocalDateTime end) {
+		this.begin = begin;
+		this.end = end;
+	}
 
-    @Override
-    public void throwException(IMessage message) {
-        DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.LANGUAGE.getProperty("exception.ending.before.start"), end, begin));
-    }
+	@Override
+	public void throwException(IMessage message) {
+		LOGGER.debug(String.format("%s is thrown.", EndingDateBeforeStartException.class.getName()));
+		DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.LANGUAGE.getProperty("exception.ending.before.start"), end, begin));
+	}
 }
