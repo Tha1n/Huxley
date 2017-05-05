@@ -29,7 +29,7 @@ public class ShowPlanningCommand extends AbstractCommand {
     public boolean request(IMessage message) {
         if (super.request(message)) {
             IUser emitter = message.getAuthor();
-            Player p = DiscordClient.gameCalendar.getPlayerBasedOnDiscordID(emitter);
+            Player p = DiscordClient.getGamecalendar().getPlayerBasedOnDiscordID(emitter);
             if (p != null) {
                 // Clean planning before print it
                 p.cleanPlanning();
@@ -39,7 +39,7 @@ public class ShowPlanningCommand extends AbstractCommand {
                 return true;
             } else {
             	LOGGER.debug(String.format("Unknwon user %s.", emitter.getName()));
-                String content = String.format("%s", HuxleyApp.LANGUAGE.getProperty("command.sp.unknow.player"));
+                String content = String.format("%s", HuxleyApp.getLanguage().getProperty("command.sp.unknow.player"));
                 DiscordMessageUtils.sendMessage(emitter.getOrCreatePMChannel(), content);
             }
         }

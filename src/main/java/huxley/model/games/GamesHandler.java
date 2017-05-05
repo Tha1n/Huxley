@@ -135,7 +135,7 @@ public class GamesHandler {
             for (String alias: g.getAliases()) {
                 aliases += alias + StringUtils.SPACE;
             }
-            result.append(String.format(HuxleyApp.LANGUAGE.getProperty("model.games.handler.game.view"), g.getName(), aliases));
+            result.append(String.format(HuxleyApp.getLanguage().getProperty("model.games.handler.game.view"), g.getName(), aliases));
         }
         return result.toString();
     }

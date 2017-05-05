@@ -15,8 +15,8 @@ import java.util.Properties;
  */
 public class HuxleyApp {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HuxleyApp.class);
-	public static final Properties CONFIGURATION = new Properties();
-	public static final Properties LANGUAGE = new Properties();
+	private static final Properties CONFIGURATION = new Properties();
+	private static final Properties LANGUAGE = new Properties();
 	static {
 		try {
 			CONFIGURATION.load(HuxleyApp.class.getResourceAsStream("/configuration.properties"));
@@ -34,4 +34,13 @@ public class HuxleyApp {
 		client.getDispatcher().registerListener(new ReadyListener());
 		LOGGER.info("HuxleyApp is finished.");
 	}
+
+	public static Properties getConfiguration() {
+		return CONFIGURATION;
+	}
+
+	public static Properties getLanguage() {
+		return LANGUAGE;
+	}
+
 }

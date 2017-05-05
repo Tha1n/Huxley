@@ -31,6 +31,6 @@ public class EndingDateBeforeStartException implements IException {
 	@Override
 	public void throwException(IMessage message) {
 		LOGGER.debug(String.format("%s is thrown.", EndingDateBeforeStartException.class.getName()));
-		DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.LANGUAGE.getProperty("exception.ending.before.start"), end, begin));
+		DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.getLanguage().getProperty("exception.ending.before.start"), end, begin));
 	}
 }

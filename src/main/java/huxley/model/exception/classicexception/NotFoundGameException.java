@@ -18,7 +18,7 @@ public class NotFoundGameException extends Exception {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotFoundGameException.class);
 
     public NotFoundGameException(String gameAlias) {
-        super(String.format(HuxleyApp.LANGUAGE.getProperty("exception.game.not.found"), gameAlias));
+        super(String.format(HuxleyApp.getLanguage().getProperty("exception.game.not.found"), gameAlias));
         LOGGER.debug(String.format("%s exception make.", NotFoundGameException.class.getName()));
     }
 }

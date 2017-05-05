@@ -19,7 +19,7 @@ public class ExistingGameException extends Exception {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExistingGameException.class);
 
     public ExistingGameException(Game game) {
-    	super(String.format(HuxleyApp.LANGUAGE.getProperty("exception.existing.game"), game.getName()));
+    	super(String.format(HuxleyApp.getLanguage().getProperty("exception.existing.game"), game.getName()));
     	LOGGER.debug(String.format("%s exception make.", ExistingGameException.class.getName()));
     }
 

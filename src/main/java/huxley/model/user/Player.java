@@ -68,14 +68,14 @@ public class Player {
 
         if (this.gamePlanning.size() > 0) {
             for (Entry<String, List<GameTimeSlot>> gameTimeSlot: this.gamePlanning.entrySet()) {
-                result.append(String.format(HuxleyApp.LANGUAGE.getProperty("model.player.have.game"), gameTimeSlot.getKey()));
+                result.append(String.format(HuxleyApp.getLanguage().getProperty("model.player.have.game"), gameTimeSlot.getKey()));
                 for (GameTimeSlot timeSlot: gameTimeSlot.getValue()) {
                     result.append(String.format("%s -> %s", dtf.format(timeSlot.getBeginDate()), dtf.format(timeSlot.getEndingDate())));
                 }
                 result.append("\n");
             }
         } else {
-            result.append(HuxleyApp.LANGUAGE.getProperty("model.player.no.game"));
+            result.append(HuxleyApp.getLanguage().getProperty("model.player.no.game"));
         }
         return result.toString();
     }

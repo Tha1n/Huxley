@@ -29,7 +29,7 @@ public class DiscordClient {
     private IDiscordClient discordClient;
     private List<ICommand> commands;
 
-    public static GameCalendar gameCalendar = new GameCalendar();
+    private static final GameCalendar gameCalendar = new GameCalendar();
 
     private DiscordClient() {
         Properties configuration = new Properties();
@@ -45,9 +45,9 @@ public class DiscordClient {
             // Building Discord client
             discordClient = new ClientBuilder().withToken(configuration.getProperty("discord.token")).login();
         } catch (IOException e) {
-            LOGGER.error(String.format(HuxleyApp.LANGUAGE.getProperty("exception.io"), e.getMessage()));
+            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.io"), e.getMessage()));
         } catch (DiscordException e) {
-            LOGGER.error(String.format(HuxleyApp.LANGUAGE.getProperty("exception.discord"), e.getMessage()));
+            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.discord"), e.getMessage()));
         }
     }
 
@@ -72,5 +72,9 @@ public class DiscordClient {
     public static List<ICommand> getCommands() {
         return getInstance().commands;
     }
+
+	public static GameCalendar getGamecalendar() {
+		return gameCalendar;
+	}
 
 }

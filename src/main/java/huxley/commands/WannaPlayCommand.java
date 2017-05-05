@@ -74,17 +74,17 @@ public class WannaPlayCommand extends AbstractCommand {
 
                 IUser emitter = message.getAuthor();
                 // Register player to planning
-                DiscordClient.gameCalendar.addPlanningForPlayer(emitter, gameAlias, start, end);
+                DiscordClient.getGamecalendar().addPlanningForPlayer(emitter, gameAlias, start, end);
 
                 // Get available players for this game for this time
-                List<IUser> availablePlayers = DiscordClient.gameCalendar.getAvailablePlayers(emitter, gameAlias, start, end);
+                List<IUser> availablePlayers = DiscordClient.getGamecalendar().getAvailablePlayers(emitter, gameAlias, start, end);
 
                 // Send message with players list
                 if (availablePlayers.size() > 0) {
                     String content = formatMessageToSend(emitter, gameAlias, availablePlayers);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 } else {
-                    String content = String.format(HuxleyApp.LANGUAGE.getProperty("command.wp.user.planning.registered"), emitter.mention());
+                    String content = String.format(HuxleyApp.getLanguage().getProperty("command.wp.user.planning.registered"), emitter.mention());
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 }
             } catch (NotFoundGameException e) {
@@ -105,18 +105,18 @@ public class WannaPlayCommand extends AbstractCommand {
                 availablePlayers) {
             result.append(String.format("%s, ", player.mention()));
         }
-        result.append(String.format(HuxleyApp.LANGUAGE.getProperty("command.wp.users.available.play"), gameAlias.toUpperCase()));
+        result.append(String.format(HuxleyApp.getLanguage().getProperty("command.wp.users.available.play"), gameAlias.toUpperCase()));
 
         return result.toString();
     }
 
     @Override
     public String help() {
-        return HuxleyApp.LANGUAGE.getProperty("command.wp.help");
+        return HuxleyApp.getLanguage().getProperty("command.wp.help");
     }
 
     @Override
     public String helpDetailed() {
-        return HuxleyApp.LANGUAGE.getProperty("command.wp.help.detailed");
+        return HuxleyApp.getLanguage().getProperty("command.wp.help.detailed");
     }
 }
