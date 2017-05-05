@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 public class Player {
 
-    private Logger LOGGER = LoggerFactory.getLogger(Player.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(Player.class);
     private IUser user;
     private Map<String, List<GameTimeSlot>> gamePlanning;
 

@@ -1,10 +1,10 @@
 package huxley.model.exception.classicexception;
 
-import huxley.HuxleyApp;
-import huxley.model.games.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sx.blah.discord.handle.obj.IMessage;
+
+import huxley.HuxleyApp;
+import huxley.model.games.Game;
 
 /**
  * TODO --> Adding Comment
@@ -12,10 +12,15 @@ import sx.blah.discord.handle.obj.IMessage;
  */
 public class ExistingGameException extends Exception {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ExistingGameException.class);
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5950274108228622268L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExistingGameException.class);
 
     public ExistingGameException(Game game) {
-        super(String.format(HuxleyApp.LANGUAGE.getProperty("exception.existing.game"), game.getName()));
+    	super(String.format(HuxleyApp.LANGUAGE.getProperty("exception.existing.game"), game.getName()));
+    	LOGGER.debug(String.format("%s exception make.", ExistingGameException.class.getName()));
     }
 
 }

@@ -1,10 +1,9 @@
 package huxley.model.user;
 
+import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * TODO --> Adding Comment
@@ -12,7 +11,8 @@ import java.util.Date;
  */
 public class GameTimeSlot {
 
-    private Logger LOGGER = LoggerFactory.getLogger(GameTimeSlot.class);
+    @SuppressWarnings("unused")
+	private static Logger LOGGER = LoggerFactory.getLogger(GameTimeSlot.class);
     private LocalDateTime beginDate;
     private LocalDateTime endingDate;
 

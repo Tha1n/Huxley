@@ -19,10 +19,10 @@ public abstract class AbstractCommand implements ICommand {
     private String name;
     private Pattern regex;
     protected Matcher matcher;
-    protected static Properties COMMANDS_PREFIX = new Properties();
+    protected static Properties COMMANDS_PROPERTIES = new Properties();
     static {
         try {
-            COMMANDS_PREFIX.load(AbstractCommand.class.getResourceAsStream("/commands.properties"));
+            COMMANDS_PROPERTIES.load(AbstractCommand.class.getResourceAsStream("/commands.properties"));
         } catch (IOException e) {
             LOGGER.error(String.format("Error occurred while loading commands properties. Huxley will exit. Error: %s", e.getMessage()));
             System.exit(-1);

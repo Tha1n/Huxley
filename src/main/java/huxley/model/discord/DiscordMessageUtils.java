@@ -10,7 +10,7 @@ import sx.blah.discord.util.*;
  * Created by alxqu on 24/04/2017.
  */
 public class DiscordMessageUtils {
-    private static Logger LOGGER = LoggerFactory.getLogger(DiscordMessageUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiscordMessageUtils.class);
 
     public static void sendMessage(IChannel channel, String content) {
         RequestBuffer.request(() -> {

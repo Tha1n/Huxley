@@ -1,9 +1,9 @@
 package huxley.model.exception.classicexception;
 
-import huxley.HuxleyApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sx.blah.discord.handle.obj.IMessage;
+
+import huxley.HuxleyApp;
 
 /**
  * TODO --> Adding Comment
@@ -11,9 +11,14 @@ import sx.blah.discord.handle.obj.IMessage;
  */
 public class NotFoundGameException extends Exception {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(NotFoundGameException.class);
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4581187618519614208L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(NotFoundGameException.class);
 
     public NotFoundGameException(String gameAlias) {
         super(String.format(HuxleyApp.LANGUAGE.getProperty("exception.game.not.found"), gameAlias));
+        LOGGER.debug(String.format("%s exception make.", NotFoundGameException.class.getName()));
     }
 }

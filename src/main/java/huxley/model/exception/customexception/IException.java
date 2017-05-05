@@ -1,6 +1,5 @@
 package huxley.model.exception.customexception;
 
-import huxley.commands.ICommand;
 import sx.blah.discord.handle.obj.IMessage;
 
 /**

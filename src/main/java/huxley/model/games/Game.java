@@ -1,9 +1,11 @@
 package huxley.model.games;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * TODO --> Adding Comment
@@ -11,6 +13,8 @@ import java.util.List;
  */
 public class Game {
 
+    @SuppressWarnings("unused")
+	private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
     private String name;
     private List<String> aliases;
 

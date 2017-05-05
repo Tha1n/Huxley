@@ -1,16 +1,16 @@
 package huxley.model.games;
 
-import huxley.model.exception.classicexception.NotFoundGameException;
-import huxley.model.user.Player;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import sx.blah.discord.handle.obj.IUser;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import huxley.model.exception.classicexception.NotFoundGameException;
+import huxley.model.user.Player;
+import sx.blah.discord.handle.obj.IUser;
 
 /**
  * TODO --> Adding Comment
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class GameCalendar {
 
-    private Logger LOGGER = LoggerFactory.getLogger(GameCalendar.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameCalendar.class);
     private List<Player> players;
 
     public GamesHandler games;

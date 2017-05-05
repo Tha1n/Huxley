@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class WannaPlayCommand extends AbstractCommand {
 
-    private Logger LOGGER = LoggerFactory.getLogger(WannaPlayCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WannaPlayCommand.class);
     DateTimeFormatter dtf;
 
     private static int GROUP_ALIAS_NUMBER = 3;
@@ -35,7 +35,7 @@ public class WannaPlayCommand extends AbstractCommand {
 
     public WannaPlayCommand() {
         super("WannaPlay",
-                Pattern.compile(String.format("^(%s%s)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", Utils.COMMAND_PREFIX, COMMANDS_PREFIX.getProperty("wanna.play.prefix"), Utils.MIN_SIZE_ALIASES, Utils.MAX_SIZE_ALIASES)));
+                Pattern.compile(String.format("^(%s%s)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("wanna.play.prefix"), COMMANDS_PROPERTIES.getProperty("min.size.aliases"), COMMANDS_PROPERTIES.getProperty("max.size.aliases"))));
 
         dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     }
