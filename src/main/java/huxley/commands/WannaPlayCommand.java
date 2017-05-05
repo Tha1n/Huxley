@@ -88,8 +88,8 @@ public class WannaPlayCommand extends AbstractCommand {
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 }
             } catch (NotFoundGameException e) {
-                DiscordMessageUtils.sendMessage(message.getChannel(), e.getMessage());
-                LOGGER.error(e.getMessage());
+                DiscordMessageUtils.sendMessage(message.getChannel(), String.format("%s", e));
+                LOGGER.error(String.format("%s", e));
                 return false;
             }
             return true;

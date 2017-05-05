@@ -24,7 +24,7 @@ public abstract class AbstractCommand implements ICommand {
         try {
             COMMANDS_PROPERTIES.load(AbstractCommand.class.getResourceAsStream("/commands.properties"));
         } catch (IOException e) {
-            LOGGER.error(String.format("Error occurred while loading commands properties. Huxley will exit. Error: %s", e.getMessage()));
+            LOGGER.error(String.format("Error occurred while loading commands properties. Huxley will exit. Error: %s", e));
             System.exit(-1);
         }
     }

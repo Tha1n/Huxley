@@ -22,7 +22,7 @@ public class HuxleyApp {
 			CONFIGURATION.load(HuxleyApp.class.getResourceAsStream("/configuration.properties"));
 			LANGUAGE.load(HuxleyApp.class.getResourceAsStream(String.format("/MessagesBundle%s.properties", CONFIGURATION.getProperty("huxley.language"))));
 		} catch (IOException e) {
-			LOGGER.error(String.format("Failed to load configuration. %s", e.getMessage()));
+			LOGGER.error(String.format("Failed to load configuration. %s", e));
 			System.exit(-1);
 		}
 

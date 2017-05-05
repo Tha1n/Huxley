@@ -21,4 +21,9 @@ public class NotFoundGameException extends Exception {
         super(String.format(HuxleyApp.getLanguage().getProperty("exception.game.not.found"), gameAlias));
         LOGGER.debug(String.format("%s exception make.", NotFoundGameException.class.getName()));
     }
+    
+    @Override
+    public String toString() {
+    	return super.toString();
+    }
 }

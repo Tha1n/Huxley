@@ -29,7 +29,7 @@ public class GameCalendar {
         try {
             games.load();
         } catch (IOException e) {
-            LOGGER.error("IOException found. " + e.getMessage());
+            LOGGER.error(String.format("IOException found. %s", e));
         }
     }
 

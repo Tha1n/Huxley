@@ -45,9 +45,9 @@ public class DiscordClient {
             // Building Discord client
             discordClient = new ClientBuilder().withToken(configuration.getProperty("discord.token")).login();
         } catch (IOException e) {
-            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.io"), e.getMessage()));
+            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.io"), e));
         } catch (DiscordException e) {
-            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.discord"), e.getMessage()));
+            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.discord"), e));
         }
     }
 

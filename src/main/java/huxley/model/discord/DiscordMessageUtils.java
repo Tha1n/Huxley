@@ -20,14 +20,14 @@ public class DiscordMessageUtils {
                         .withContent(content)
                         .build();
             } catch(RateLimitException e){
-                LOGGER.warn(e.getMessage());
+                LOGGER.warn(String.format("%s", e));
                 throw e;
             } catch (DiscordException e){
                 LOGGER.error(e.getErrorMessage());
             } catch(MissingPermissionsException e){
                 LOGGER.warn("Huxley does not have enough permission to make request.");
             } catch(Exception e){
-               LOGGER.error(e.getMessage());
+               LOGGER.error(String.format("%s", e));
             }
             return null;
         });
