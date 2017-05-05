@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * TODO --> Adding Comment
+ * Main class of the Huxley Application
  * Created by alxqu on 24/03/2017.
  */
 public class HuxleyApp {

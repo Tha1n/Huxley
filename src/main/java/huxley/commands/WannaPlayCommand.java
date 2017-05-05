@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * TODO --> Adding Comment
+ * Discord Command to set a game planning for a {@link sx.blah.discord.handle.obj.IUser}.
  * Created by alxqu on 18/04/2017.
  */
 public class WannaPlayCommand extends AbstractCommand {
@@ -33,6 +33,9 @@ public class WannaPlayCommand extends AbstractCommand {
     private static int GROUP_DATE_NUMBER = 6;
     private static int GROUP_YEAR_NUMBER = 7;
 
+    /**
+     * Constructor.
+     */
     public WannaPlayCommand() {
         super("WannaPlay",
                 Pattern.compile(String.format("^(%s%s)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("wanna.play.prefix"), COMMANDS_PROPERTIES.getProperty("min.size.aliases"), COMMANDS_PROPERTIES.getProperty("max.size.aliases"))));
@@ -40,6 +43,9 @@ public class WannaPlayCommand extends AbstractCommand {
         dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean request(IMessage message) {
         if (super.request(message)) {
@@ -97,6 +103,13 @@ public class WannaPlayCommand extends AbstractCommand {
         return false;
     }
 
+    /**
+     * Build the Huxley response for the command.
+     * @param emitter {@link sx.blah.discord.handle.obj.IUser} object that is the émitter of the original message.
+     * @param gameAlias String that is the game alias.
+     * @param availablePlayers List of {@link sx.blah.discord.handle.obj.IUser}.
+     * @return Huxley response string.
+     */
     private String formatMessageToSend(IUser emitter, String gameAlias, List<IUser> availablePlayers) {
         StringBuilder result = new StringBuilder();
 
@@ -110,11 +123,17 @@ public class WannaPlayCommand extends AbstractCommand {
         return result.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String help() {
         return HuxleyApp.getLanguage().getProperty("command.wp.help");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String helpDetailed() {
         return HuxleyApp.getLanguage().getProperty("command.wp.help.detailed");

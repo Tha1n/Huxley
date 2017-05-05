@@ -13,18 +13,24 @@ import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
 
 /**
- * TODO --> Adding Comment
+ * Discord Command to have the game planning for a player.
  * Created by alxqu on 26/04/2017.
  */
 public class ShowPlanningCommand extends AbstractCommand {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ShowPlanningCommand.class);
     
+    /**
+     * Constructor.
+     */
     public ShowPlanningCommand() {
         super(COMMANDS_PROPERTIES.getProperty("show.planning.name"),
         		Pattern.compile(String.format("^%s%s", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("show.planning.prefix"))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean request(IMessage message) {
         if (super.request(message)) {
@@ -46,11 +52,17 @@ public class ShowPlanningCommand extends AbstractCommand {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String help() {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String helpDetailed() {
         return null;

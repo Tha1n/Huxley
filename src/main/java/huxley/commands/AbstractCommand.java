@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * TODO --> Adding Comment
+ * An abstract Discord comment that partially implement {@link huxley.commands.ICommand}
  * Created by alxqu on 17/04/2017.
  */
 public abstract class AbstractCommand implements ICommand {
@@ -29,6 +29,11 @@ public abstract class AbstractCommand implements ICommand {
         }
     }
 
+    /**
+     * Constructor.
+     * @param name Command name.
+     * @param regex Command regex pattern.
+     */
     public AbstractCommand(String name, Pattern regex) {
         super();
 
@@ -36,6 +41,10 @@ public abstract class AbstractCommand implements ICommand {
         this.regex = regex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean request(IMessage message) {
         matcher = regex.matcher(message.getContent());
         boolean patternFound = matcher.find();
@@ -43,11 +52,17 @@ public abstract class AbstractCommand implements ICommand {
         return patternFound;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
         return this.name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Pattern getPattern() {
         return this.regex;
