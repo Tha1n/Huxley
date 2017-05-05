@@ -131,9 +131,10 @@ public class GamesHandler {
 
         StringBuilder result = new StringBuilder();
         for (Game g: this.gameList.getGames()) {
-            String aliases = StringUtils.EMPTY;
+            StringBuilder aliases = new StringBuilder();
             for (String alias: g.getAliases()) {
-                aliases += alias + StringUtils.SPACE;
+            	aliases.append(alias);
+            	aliases.append(StringUtils.SPACE);
             }
             result.append(String.format(HuxleyApp.getLanguage().getProperty("model.games.handler.game.view"), g.getName(), aliases));
         }

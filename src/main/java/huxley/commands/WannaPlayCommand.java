@@ -86,7 +86,7 @@ public class WannaPlayCommand extends AbstractCommand {
                 List<IUser> availablePlayers = DiscordClient.getGamecalendar().getAvailablePlayers(emitter, gameAlias, start, end);
 
                 // Send message with players list
-                if (availablePlayers.size() > 0) {
+                if (! availablePlayers.isEmpty()) {
                     String content = formatMessageToSend(emitter, gameAlias, availablePlayers);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 } else {

@@ -55,7 +55,7 @@ public class Player {
         for (Entry<String, List<GameTimeSlot>> gamePlanning : this.gamePlanning.entrySet()) {
             List<GameTimeSlot> gtsToClean = gamePlanning.getValue().stream().filter(gts -> now.isAfter(gts.getEndingDate())).collect(Collectors.toList());
             gamePlanning.getValue().removeAll(gtsToClean);
-            if (gamePlanning.getValue().size() == 0) { // Remove game from the list
+            if (gamePlanning.getValue().isEmpty()) { // Remove game from the list
                 gToClean.add(gamePlanning.getKey());
             }
         }
@@ -66,7 +66,7 @@ public class Player {
         StringBuilder result = new StringBuilder();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("[dd/MM] HH:mm");
 
-        if (this.gamePlanning.size() > 0) {
+        if (! this.gamePlanning.isEmpty()) {
             for (Entry<String, List<GameTimeSlot>> gameTimeSlot: this.gamePlanning.entrySet()) {
                 result.append(String.format(HuxleyApp.getLanguage().getProperty("model.player.have.game"), gameTimeSlot.getKey()));
                 for (GameTimeSlot timeSlot: gameTimeSlot.getValue()) {
