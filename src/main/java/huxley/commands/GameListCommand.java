@@ -34,7 +34,7 @@ public class GameListCommand extends AbstractCommand {
             EGameListChoice choice = EGameListChoice.ADD.getTypeByInput(matcher.group(1));
             switch (choice) {
                 case ALL:
-                    String content = DiscordClient.gameCalendar.getGames().getGameListString();
+                    String content = DiscordClient.getGamecalendar().getGames().getGameListString();
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                     result = true;
                     break;
