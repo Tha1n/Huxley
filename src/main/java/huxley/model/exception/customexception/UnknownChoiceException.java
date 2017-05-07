@@ -1,10 +1,10 @@
 package huxley.model.exception.customexception;
 
-import huxley.HuxleyApp;
-import huxley.commands.EGameListChoice;
-import huxley.model.discord.DiscordMessageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import huxley.HuxleyApp;
+import huxley.model.discord.DiscordMessageUtils;
 import sx.blah.discord.handle.obj.IMessage;
 
 /**
@@ -18,6 +18,6 @@ public class UnknownChoiceException implements IException {
     @Override
     public void throwException(IMessage message) {
         LOGGER.debug(String.format("%s is thrown", UnknownChoiceException.class.getName()));
-        DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.LANGUAGE.getProperty("exception.unknown.choice")));
+        DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.getLanguage().getProperty("exception.unknown.choice")));
     }
 }

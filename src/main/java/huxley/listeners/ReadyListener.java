@@ -30,9 +30,9 @@ public class ReadyListener {
         URL imgUrl = ReadyListener.class.getResource("/Huxley.png");
         File img = new File(imgUrl.toURI());
         LOGGER.info("Set visual parameters for the bot.");
-        client.changeUsername(HuxleyApp.CONFIGURATION.getProperty("huxley.name"));
+        client.changeUsername(HuxleyApp.getConfiguration().getProperty("huxley.name"));
         client.changeAvatar(Image.forFile(img));
-        client.changePlayingText(HuxleyApp.LANGUAGE.getProperty("huxley.playing.to"));
+        client.changePlayingText(HuxleyApp.getLanguage().getProperty("huxley.playing.to"));
         client.idle();
 
         LOGGER.info("Register message listener.");

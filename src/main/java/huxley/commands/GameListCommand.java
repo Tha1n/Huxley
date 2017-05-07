@@ -8,11 +8,14 @@ import sx.blah.discord.handle.obj.IMessage;
 import java.util.regex.Pattern;
 
 /**
- * TODO --> Adding Comment
+ * Discord Command to see GameList, add or remove games.
  * Created by alxqu on 04/05/2017.
  */
 public class GameListCommand extends AbstractCommand {
 
+	/**
+	 * Constructor.
+	 */
     public GameListCommand() {
         super(COMMANDS_PROPERTIES.getProperty("game.list.name"),
                 Pattern.compile(String.format("^%s%s\\s(all|\\+|-)(\\s((\\\".+\\\")((\\s(\\w{%s,%s}))+)|(.{%s,%s})))?",
@@ -21,6 +24,9 @@ public class GameListCommand extends AbstractCommand {
                         COMMANDS_PROPERTIES.getProperty("min.size.aliases"), COMMANDS_PROPERTIES.getProperty("min.size.aliases"))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean request(IMessage message) {
         boolean result = false;
@@ -47,11 +53,17 @@ public class GameListCommand extends AbstractCommand {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String help() {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String helpDetailed() {
         return null;

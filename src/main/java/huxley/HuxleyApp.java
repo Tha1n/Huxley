@@ -10,19 +10,19 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * TODO --> Adding Comment
+ * Main class of the Huxley Application
  * Created by alxqu on 24/03/2017.
  */
 public class HuxleyApp {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HuxleyApp.class);
-	public static final Properties CONFIGURATION = new Properties();
-	public static final Properties LANGUAGE = new Properties();
+	private static final Properties CONFIGURATION = new Properties();
+	private static final Properties LANGUAGE = new Properties();
 	static {
 		try {
 			CONFIGURATION.load(HuxleyApp.class.getResourceAsStream("/configuration.properties"));
 			LANGUAGE.load(HuxleyApp.class.getResourceAsStream(String.format("/MessagesBundle%s.properties", CONFIGURATION.getProperty("huxley.language"))));
 		} catch (IOException e) {
-			LOGGER.error(String.format("Failed to load configuration. %s", e.getMessage()));
+			LOGGER.error(String.format("Failed to load configuration. %s", e));
 			System.exit(-1);
 		}
 
@@ -34,4 +34,13 @@ public class HuxleyApp {
 		client.getDispatcher().registerListener(new ReadyListener());
 		LOGGER.info("HuxleyApp is finished.");
 	}
+
+	public static Properties getConfiguration() {
+		return CONFIGURATION;
+	}
+
+	public static Properties getLanguage() {
+		return LANGUAGE;
+	}
+
 }

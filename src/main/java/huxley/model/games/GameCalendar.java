@@ -19,9 +19,9 @@ import sx.blah.discord.handle.obj.IUser;
 public class GameCalendar {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GameCalendar.class);
+    
     private List<Player> players;
-
-    public GamesHandler games;
+    private GamesHandler games;
 
     public GameCalendar() {
         players = new ArrayList<>();
@@ -29,7 +29,7 @@ public class GameCalendar {
         try {
             games.load();
         } catch (IOException e) {
-            LOGGER.error("IOException found. " + e.getMessage());
+            LOGGER.error(String.format("IOException found. %s", e));
         }
     }
 

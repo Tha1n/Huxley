@@ -27,6 +27,6 @@ public class GivenDateBeforeNowException implements IException {
     @Override
     public void throwException(IMessage message) {
 		LOGGER.debug(String.format("%s is thrown", GivenDateBeforeNowException.class.getName()));
-        DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.LANGUAGE.getProperty("exception.date.before.now"), start, end));
+        DiscordMessageUtils.sendMessage(message.getChannel(), String.format(HuxleyApp.getLanguage().getProperty("exception.date.before.now"), start, end));
     }
 }

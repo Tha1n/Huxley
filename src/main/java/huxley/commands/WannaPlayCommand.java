@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * TODO --> Adding Comment
+ * Discord Command to set a game planning for a {@link sx.blah.discord.handle.obj.IUser}.
  * Created by alxqu on 18/04/2017.
  */
 public class WannaPlayCommand extends AbstractCommand {
@@ -33,6 +33,9 @@ public class WannaPlayCommand extends AbstractCommand {
     private static int GROUP_DATE_NUMBER = 6;
     private static int GROUP_YEAR_NUMBER = 7;
 
+    /**
+     * Constructor.
+     */
     public WannaPlayCommand() {
         super("WannaPlay",
                 Pattern.compile(String.format("^(%s%s)\\s((\\w{%s,%s})\\s(\\d{2}:\\d{2})\\s->\\s(\\d{2}:\\d{2})(\\s\\d{2}/\\d{2}(/\\d{4})?)?)", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("wanna.play.prefix"), COMMANDS_PROPERTIES.getProperty("min.size.aliases"), COMMANDS_PROPERTIES.getProperty("max.size.aliases"))));
@@ -40,6 +43,9 @@ public class WannaPlayCommand extends AbstractCommand {
         dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean request(IMessage message) {
         if (super.request(message)) {
@@ -74,22 +80,22 @@ public class WannaPlayCommand extends AbstractCommand {
 
                 IUser emitter = message.getAuthor();
                 // Register player to planning
-                DiscordClient.gameCalendar.addPlanningForPlayer(emitter, gameAlias, start, end);
+                DiscordClient.getGamecalendar().addPlanningForPlayer(emitter, gameAlias, start, end);
 
                 // Get available players for this game for this time
-                List<IUser> availablePlayers = DiscordClient.gameCalendar.getAvailablePlayers(emitter, gameAlias, start, end);
+                List<IUser> availablePlayers = DiscordClient.getGamecalendar().getAvailablePlayers(emitter, gameAlias, start, end);
 
                 // Send message with players list
-                if (availablePlayers.size() > 0) {
+                if (! availablePlayers.isEmpty()) {
                     String content = formatMessageToSend(emitter, gameAlias, availablePlayers);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 } else {
-                    String content = String.format(HuxleyApp.LANGUAGE.getProperty("command.wp.user.planning.registered"), emitter.mention());
+                    String content = String.format(HuxleyApp.getLanguage().getProperty("command.wp.user.planning.registered"), emitter.mention());
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 }
             } catch (NotFoundGameException e) {
-                DiscordMessageUtils.sendMessage(message.getChannel(), e.getMessage());
-                LOGGER.error(e.getMessage());
+                DiscordMessageUtils.sendMessage(message.getChannel(), String.format("%s", e));
+                LOGGER.error(String.format("%s", e));
                 return false;
             }
             return true;
@@ -97,6 +103,13 @@ public class WannaPlayCommand extends AbstractCommand {
         return false;
     }
 
+    /**
+     * Build the Huxley response for the command.
+     * @param emitter {@link sx.blah.discord.handle.obj.IUser} object that is the émitter of the original message.
+     * @param gameAlias String that is the game alias.
+     * @param availablePlayers List of {@link sx.blah.discord.handle.obj.IUser}.
+     * @return Huxley response string.
+     */
     private String formatMessageToSend(IUser emitter, String gameAlias, List<IUser> availablePlayers) {
         StringBuilder result = new StringBuilder();
 
@@ -105,18 +118,24 @@ public class WannaPlayCommand extends AbstractCommand {
                 availablePlayers) {
             result.append(String.format("%s, ", player.mention()));
         }
-        result.append(String.format(HuxleyApp.LANGUAGE.getProperty("command.wp.users.available.play"), gameAlias.toUpperCase()));
+        result.append(String.format(HuxleyApp.getLanguage().getProperty("command.wp.users.available.play"), gameAlias.toUpperCase()));
 
         return result.toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String help() {
-        return HuxleyApp.LANGUAGE.getProperty("command.wp.help");
+        return HuxleyApp.getLanguage().getProperty("command.wp.help");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String helpDetailed() {
-        return HuxleyApp.LANGUAGE.getProperty("command.wp.help.detailed");
+        return HuxleyApp.getLanguage().getProperty("command.wp.help.detailed");
     }
 }
