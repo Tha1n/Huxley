@@ -1,5 +1,7 @@
 package huxley.commands;
 
+import huxley.model.discord.DiscordClient;
+import huxley.model.discord.DiscordMessageUtils;
 import huxley.model.exception.customexception.UnknownChoiceException;
 import sx.blah.discord.handle.obj.IMessage;
 
@@ -23,13 +25,18 @@ public class GameListCommand extends AbstractCommand {
     public boolean request(IMessage message) {
         boolean result = false;
         if (super.request(message)) {
-            EGameListChoice choice = EGameListChoice.ADD.getTypeByInput(matcher.group(1)); // TODO Num du groupe
+            EGameListChoice choice = EGameListChoice.ADD.getTypeByInput(matcher.group(1));
             switch (choice) {
                 case ALL:
+                    String content = DiscordClient.gameCalendar.getGames().getGameListString();
+                    DiscordMessageUtils.sendMessage(message.getChannel(), content);
+                    result = true;
                     break;
                 case ADD:
+                    // TODO
                     break;
                 case DELETE:
+                    // TODO
                     break;
                 case UNKNOWN:
                     new UnknownChoiceException().throwException(message);
