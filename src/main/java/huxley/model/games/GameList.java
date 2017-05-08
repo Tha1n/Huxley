@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * TODO --> Adding Comment
  * Created by alxqu on 16/04/2017.
  */
-class GameList {
+public class GameList {
 
     @SuppressWarnings("unused")
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameList.class);

@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import huxley.commands.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import huxley.HuxleyApp;
-import huxley.commands.HuxleyCommand;
-import huxley.commands.ICommand;
-import huxley.commands.ShowPlanningCommand;
-import huxley.commands.WannaPlayCommand;
 import huxley.model.games.GameCalendar;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
@@ -55,6 +52,7 @@ public class DiscordClient {
         // TODO Adding other commands further
         commands.add(new WannaPlayCommand());
         commands.add(new ShowPlanningCommand());
+        commands.add(new GameListCommand());
         commands.add(new HuxleyCommand());
     }
 

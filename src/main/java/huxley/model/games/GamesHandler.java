@@ -97,7 +97,7 @@ public class GamesHandler {
      * @param aliases List of aliases for this game.
      * @throws ExistingGameException
      */
-    public void addGame(String name, List<String> aliases) throws ExistingGameException {
+    private void addGame(String name, List<String> aliases) throws ExistingGameException {
         LOGGER.debug(String.format("Searching game : %s.", name));
 
         Game g = new Game();
@@ -123,6 +123,27 @@ public class GamesHandler {
     }
 
     /**
+     * Remove a game in the list.
+     * @param g The game to remove.
+     */
+    private void removeGame(Game g) {
+        this.gameList.getGames().remove(g);
+    }
+
+    /**
+     * Remove a game and save.
+     * @param g The game to remove.
+     * @throws IOException
+     * @throws URISyntaxException
+     */
+    public void removeGameAndSave(Game g) throws IOException, URISyntaxException {
+        LOGGER.debug(String.format("Removing game : %s and save content.", g.getName()));
+
+        this.removeGame(g);
+        this.save();
+    }
+
+    /**
      * Return the Games list in String format.
      * @return The Games list.
      */
@@ -140,4 +161,5 @@ public class GamesHandler {
         }
         return result.toString();
     }
+
 }
