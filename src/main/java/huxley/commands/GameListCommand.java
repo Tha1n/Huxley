@@ -72,6 +72,10 @@ public class GameListCommand extends AbstractCommand {
         return result;
     }
 
+    /**
+     * Add a game to the list.
+     * @return The response from Huxley.
+     */
     private String addGame() {
         String result = StringUtils.EMPTY;
 
@@ -99,6 +103,10 @@ public class GameListCommand extends AbstractCommand {
         return result;
     }
 
+    /**
+     * Remove a game in the list
+     * @return The response from Huxley.
+     */
     private String removeGame() {
         String result = StringUtils.EMPTY;
 
