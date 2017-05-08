@@ -1,5 +1,6 @@
 node {
     stage ('Compilation') {
+        build job: 'Thain'
         build job: 'Huxley - Compile'
     }
     stage ('Test') {
