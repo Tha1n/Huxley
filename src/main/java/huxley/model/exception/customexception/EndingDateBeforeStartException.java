@@ -9,7 +9,7 @@ import sx.blah.discord.handle.obj.IMessage;
 import java.time.LocalDateTime;
 
 /**
- * TODO --> Adding Comment
+ * Exception if ending date is before starting date.
  * Created by alxqu on 22/04/2017.
  */
 public class EndingDateBeforeStartException implements IException {

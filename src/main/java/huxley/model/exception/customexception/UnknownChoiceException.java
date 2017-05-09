@@ -8,7 +8,7 @@ import huxley.model.discord.DiscordMessageUtils;
 import sx.blah.discord.handle.obj.IMessage;
 
 /**
- * TODO --> Adding Comment
+ * Exception if we cannot retrieve the choice of user.
  * Created by alxqu on 05/05/2017.
  */
 public class UnknownChoiceException implements IException {

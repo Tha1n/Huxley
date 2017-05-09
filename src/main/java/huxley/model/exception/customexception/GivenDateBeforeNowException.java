@@ -10,7 +10,7 @@ import huxley.model.discord.DiscordMessageUtils;
 import sx.blah.discord.handle.obj.IMessage;
 
 /**
- * TODO --> Adding Comment
+ * Exception if given date is before the current date and time.
  * Created by alxqu on 26/04/2017.
  */
 public class GivenDateBeforeNowException implements IException {
@@ -19,6 +19,11 @@ public class GivenDateBeforeNowException implements IException {
     LocalDateTime start;
     LocalDateTime end;
 
+    /**
+     * Constructor.
+     * @param start The starting date.
+     * @param end The ending date.
+     */
     public GivenDateBeforeNowException(LocalDateTime start, LocalDateTime end) {
         this.start = start;
         this.end = end;

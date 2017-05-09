@@ -13,7 +13,7 @@ import huxley.model.user.Player;
 import sx.blah.discord.handle.obj.IUser;
 
 /**
- * TODO --> Adding Comment
+ * Class that represent the gaming calendar from the Huxley point of view.
  * Created by alxqu on 22/04/2017.
  */
 public class GameCalendar {
@@ -23,6 +23,9 @@ public class GameCalendar {
     private List<Player> players;
     private GamesHandler games;
 
+    /**
+     * Constructor.
+     */
     public GameCalendar() {
         players = new ArrayList<>();
         games = new GamesHandler();
@@ -33,6 +36,14 @@ public class GameCalendar {
         }
     }
 
+    /**
+     * Add a planning for a player.
+     * @param user The {@link IUser} object that emit the message in the first place.
+     * @param gameAlias The game alias.
+     * @param start The starting date.
+     * @param end The ending date.
+     * @throws NotFoundGameException If the game was not found.
+     */
     public void addPlanningForPlayer(IUser user, String gameAlias, LocalDateTime start, LocalDateTime end) throws NotFoundGameException {
         LOGGER.debug(String.format("Adding planning for player %s for the game %s.", user, gameAlias));
 
@@ -52,6 +63,15 @@ public class GameCalendar {
         return games;
     }
 
+    /**
+     * Get all players that can play between the given date.
+     * @param user The player that emit the message in first place.
+     * @param gameAlias The game alias.
+     * @param start The starting date.
+     * @param end The ending date
+     * @return A list of {@link IUser}
+     * @throws NotFoundGameException If the game was not found.
+     */
     public List<IUser> getAvailablePlayers(IUser user, String gameAlias, LocalDateTime start, LocalDateTime end) throws NotFoundGameException {
         LOGGER.debug(String.format("Get available players for game %s.", gameAlias));
 
@@ -70,6 +90,11 @@ public class GameCalendar {
         return plyrs;
     }
 
+    /**
+     * Retrieve a {@link Player} object from {@link IUser} object.
+     * @param user A {@link IUser} object.
+     * @return The {@link Player} object, {@code null} otherwise.
+     */
     public Player getPlayerBasedOnDiscordID(IUser user) {
         return this.players.stream().filter(p -> p.getUser().getStringID().equals(user.getStringID())).findFirst().orElse(null);
     }

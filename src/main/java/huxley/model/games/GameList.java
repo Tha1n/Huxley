@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO --> Adding Comment
+ * POJO class to represent json file that hold game data.
  * Created by alxqu on 16/04/2017.
  */
 public class GameList {
@@ -16,16 +16,20 @@ public class GameList {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameList.class);
     private List<Game> games;
 
+    /**
+     * Constructor.
+     */
     public GameList() {
         super();
         games = new ArrayList<Game>();
     }
 
+    /**
+     * Get {@link Game} list.
+     * @return
+     */
     public List<Game> getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
 }

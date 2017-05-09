@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 /**
- * TODO --> Adding Comment
+ * Class that allow to manipulate GameList in safe way.
  * Created by alxqu on 16/04/2017.
  */
 public class GamesHandler {
@@ -34,7 +34,7 @@ public class GamesHandler {
      * Add a game in the list.
      *
      * @param game Game to add.
-     * @throws ExistingGameException
+     * @throws ExistingGameException If the game already exists.
      */
     private void addGame(Game game) throws ExistingGameException {
         LOGGER.debug(String.format("Adding game : %s.", game.getName()));
@@ -48,7 +48,7 @@ public class GamesHandler {
 
     /**
      * Load game list from disk.
-     * @throws IOException
+     * @throws IOException If we cannot load from the disk.
      */
     public void load() throws IOException {
         LOGGER.debug("Loading games list data.");
@@ -59,8 +59,8 @@ public class GamesHandler {
 
     /**
      * Save game list on disk.
-     * @throws URISyntaxException
-     * @throws IOException
+     * @throws URISyntaxException If we cannot find the file.
+     * @throws IOException If we cannot save on disk.
      */
     public void save() throws URISyntaxException, IOException {
         LOGGER.debug("Saving games list data.");
@@ -76,7 +76,7 @@ public class GamesHandler {
      *
      * @param alias Alias of the searching game.
      * @return The founded game.
-     * @throws NotFoundGameException
+     * @throws NotFoundGameException If the game was not found.
      */
     public Game findGameByAlias(String alias) throws NotFoundGameException {
         LOGGER.debug(String.format("Searching game with alias %s.", alias));
@@ -95,7 +95,7 @@ public class GamesHandler {
      *
      * @param name    Name of the game.
      * @param aliases List of aliases for this game.
-     * @throws ExistingGameException
+     * @throws ExistingGameException If the game already exists.
      */
     private void addGame(String name, List<String> aliases) throws ExistingGameException {
         LOGGER.debug(String.format("Searching game : %s.", name));
@@ -111,9 +111,9 @@ public class GamesHandler {
      *
      * @param name    Name of the game.
      * @param aliases List of aliases for this game.
-     * @throws ExistingGameException
-     * @throws IOException
-     * @throws URISyntaxException
+     * @throws ExistingGameException If the game already exists.
+     * @throws IOException If we cannot save on disk.
+     * @throws URISyntaxException If we cannot retrieve the file.
      */
     public void addGameAndSave(String name, List<String> aliases) throws ExistingGameException, IOException, URISyntaxException {
         LOGGER.debug(String.format("Adding game : %s and save content.", name));
