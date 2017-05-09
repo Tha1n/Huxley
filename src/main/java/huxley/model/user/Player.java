@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 /**
- * TODO --> Adding Comment
+ * Player class that represent a Discord User that want to play.
  * Created by alxqu on 22/04/2017.
  */
 public class Player {
@@ -21,20 +21,37 @@ public class Player {
     private IUser user;
     private Map<String, List<GameTimeSlot>> gamePlanning;
 
+    /**
+     * Constructor
+     */
     private Player() {
         this.user = null;
         gamePlanning = new HashMap<>();
     }
 
+    /**
+     * Constructor
+     * @param user The {@link sx.blah.discord.handle.obj.IUser} object for this {@code Player}.
+     */
     public Player(IUser user) {
         this();
         this.user = user;
     }
 
+    /**
+     * Get {@link sx.blah.discord.handle.obj.IUser} object for {@code Player}.
+     * @return The {@link sx.blah.discord.handle.obj.IUser} object.
+     */
     public IUser getUser() {
         return user;
     }
 
+    /**
+     * Add a planning for the player.
+     * @param game Game name.
+     * @param start Starting date.
+     * @param end Ending date.
+     */
     public void addPlanning(String game, LocalDateTime start, LocalDateTime end) {
         LOGGER.debug("Adding planning for player " + this.user.getStringID() + " for game " + game);
 
@@ -47,6 +64,9 @@ public class Player {
         gamePlanning.put(game, lgts);
     }
 
+    /**
+     * Clean planning base on current date.
+     */
     public void cleanPlanning() {
         LOGGER.debug("Cleaning planning for player " + this.user.getStringID());
 
@@ -62,6 +82,10 @@ public class Player {
         this.gamePlanning.keySet().removeAll(gToClean);
     }
 
+    /**
+     * Return the player planning in string format.
+     * @return The player's planning.
+     */
     public String formatPlanning() {
         StringBuilder result = new StringBuilder();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("[dd/MM] HH:mm");
@@ -80,6 +104,13 @@ public class Player {
         return result.toString();
     }
 
+    /**
+     * Check if player can play at a specified time.
+     * @param game Specified game name.
+     * @param st Starting date.
+     * @param end Ending date.
+     * @return True if the player can play, false otherwise.
+     */
     public boolean canPlay(String game, LocalDateTime st, LocalDateTime end) {
         LOGGER.debug("Check if player " + this.user.getStringID() + " can play game " + game);
 

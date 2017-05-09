@@ -16,7 +16,7 @@ import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 
 /**
- * TODO --> Adding Comment
+ * Class that represent the Discord client BOT Huxley.
  * Created by alxqu on 16/04/2017.
  */
 public class DiscordClient {
@@ -28,6 +28,9 @@ public class DiscordClient {
 
     private static final GameCalendar gameCalendar = new GameCalendar();
 
+    /**
+     * Constructor.
+     */
     private DiscordClient() {
         Properties configuration = new Properties();
 
@@ -48,14 +51,20 @@ public class DiscordClient {
         }
     }
 
+    /**
+     * Initialize commands list.
+     */
     private void initCommands() {
-        // TODO Adding other commands further
         commands.add(new WannaPlayCommand());
         commands.add(new ShowPlanningCommand());
         commands.add(new GameListCommand());
         commands.add(new HuxleyCommand());
     }
 
+    /**
+     * Get instance of {@link DiscordClient}.
+     * @return The instance.
+     */
     private static DiscordClient getInstance() {
         if (instance == null) {
             instance = new DiscordClient();
@@ -63,14 +72,26 @@ public class DiscordClient {
         return instance;
     }
 
+    /**
+     * Get {@link IDiscordClient} object.
+     * @return The {@link IDiscordClient} object.
+     */
     public static IDiscordClient getDiscordClient() {
         return getInstance().discordClient;
     }
 
+    /**
+     * Get the list of commands.
+     * @return The list of commands.
+     */
     public static List<ICommand> getCommands() {
         return getInstance().commands;
     }
 
+    /**
+     * Get the game calendar.
+     * @return The game calendar.
+     */
 	public static GameCalendar getGamecalendar() {
 		return gameCalendar;
 	}

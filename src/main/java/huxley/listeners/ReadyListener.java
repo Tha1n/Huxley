@@ -16,7 +16,7 @@ import sx.blah.discord.handle.impl.events.ReadyEvent;
 import sx.blah.discord.util.Image;
 
 /**
- * TODO --> Adding Comment
+ * Discord Listener when bot is ready to work.
  * Created by alxqu on 24/04/2017.
  */
 public class ReadyListener {
