@@ -1,5 +1,8 @@
 package huxley.commands;
 
+import huxley.HuxleyApp;
+import huxley.model.discord.DiscordClient;
+import huxley.model.discord.DiscordMessageUtils;
 import sx.blah.discord.handle.obj.IMessage;
 
 import java.util.regex.Pattern;
@@ -12,13 +15,14 @@ public class HuxleyCommand extends AbstractCommand {
 
     private static final int HELP_GROUP = 1;
     private static final int HELP_DETAILED_GROUP = 2;
+    private static final int COMMAND_NAME_GROUP = 3;
 
-	/**
-	 * Constructor.
-	 */
+    /**
+     * Constructor.
+     */
     public HuxleyCommand() {
         super(COMMANDS_PROPERTIES.getProperty("huxley.name"),
-        		Pattern.compile(String.format("^%s%s(\\shelp(++)?)?", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"))));
+                Pattern.compile(String.format("^%s%s(\\shelp(++)?)?\\s*(\\w+)?", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"))));
     }
 
     /**
@@ -27,12 +31,30 @@ public class HuxleyCommand extends AbstractCommand {
     @Override
     public boolean request(IMessage message) {
         if (super.request(message)) {
-            if (matcher.group(HELP_DETAILED_GROUP) != null) {
-                //TODO
-            } else if (matcher.group(HELP_GROUP) != null) {
-                //TODO
+            String gameName = matcher.group(COMMAND_NAME_GROUP);
+
+            if (matcher.group(HELP_DETAILED_GROUP) != null || matcher.group(HELP_GROUP) != null) {
+                ICommand cmd;
+                if (gameName == null ||
+                        (cmd = DiscordClient.getCommands().stream().filter(c -> c.getName().equalsIgnoreCase(gameName)).findFirst().orElse(null)) == null) {
+                    String content = HuxleyApp.getLanguage().getProperty("command.huxley.unknown.command");
+                    DiscordMessageUtils.sendMessage(message.getChannel(), content);
+                    return false;
+                }
+
+                String content;
+                if (matcher.group(HELP_DETAILED_GROUP) != null) {
+                    content = cmd.helpDetailed();
+                } else {
+                    content = cmd.help();
+                }
+                DiscordMessageUtils.sendMessage(message.getChannel(), content);
             } else {
-                //TODO
+                String content = String.format(HuxleyApp.getLanguage().getProperty("command.huxley.global"),
+                        COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"),
+                        COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"));
+                DiscordMessageUtils.sendMessage(message.getChannel(), content);
+                return true;
             }
         }
         return false;
@@ -43,8 +65,7 @@ public class HuxleyCommand extends AbstractCommand {
      */
     @Override
     public String help() {
-        // TODO
-        return null;
+        return HuxleyApp.getLanguage().getProperty("command.huxley.help");
     }
 
     /**
@@ -52,7 +73,8 @@ public class HuxleyCommand extends AbstractCommand {
      */
     @Override
     public String helpDetailed() {
-        // TODO
-        return null;
+        return String.format(HuxleyApp.getLanguage().getProperty("command.huxley.help.detailed"),
+                COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"),
+                COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"));
     }
 }

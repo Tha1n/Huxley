@@ -45,7 +45,7 @@ public class ShowPlanningCommand extends AbstractCommand {
                 return true;
             } else {
             	LOGGER.debug(String.format("Unknwon user %s.", emitter.getName()));
-                String content = String.format("%s", HuxleyApp.getLanguage().getProperty("command.sp.unknow.player"));
+                String content = String.format("%s", HuxleyApp.getLanguage().getProperty("command.sp.unknown.player"));
                 DiscordMessageUtils.sendMessage(emitter.getOrCreatePMChannel(), content);
             }
         }
