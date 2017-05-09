@@ -22,7 +22,7 @@ public class HuxleyCommand extends AbstractCommand {
      */
     public HuxleyCommand() {
         super(COMMANDS_PROPERTIES.getProperty("huxley.name"),
-                Pattern.compile(String.format("^%s%s(\\shelp(++)?)?\\s*(\\w+)?", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"))));
+                Pattern.compile(String.format("^%s%s(\\shelp(\\+\\+)?)?\\s*(\\w+)?", COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"))));
     }
 
     /**
