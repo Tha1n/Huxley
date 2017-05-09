@@ -26,7 +26,7 @@ public class GameList {
 
     /**
      * Get {@link Game} list.
-     * @return
+     * @return A list of {@link Game}
      */
     public List<Game> getGames() {
         return games;
