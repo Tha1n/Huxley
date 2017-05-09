@@ -23,7 +23,7 @@ public class HuxleyApp {
     static {
         try {
             String path = System.getProperty("user.dir");
-            path = URLDecoder.decode(String.format("%s\\configuration.properties", path), "UTF-8");
+            path = URLDecoder.decode(String.format("%s/configuration.properties", path), "UTF-8");
 
             CONFIGURATION.load(new FileInputStream(path));
             LANGUAGE.load(HuxleyApp.class.getResourceAsStream(String.format("/MessagesBundle%s.properties", CONFIGURATION.getProperty("huxley.language"))));
