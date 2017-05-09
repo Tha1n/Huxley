@@ -12,4 +12,7 @@ node {
     stage ('Installation') {
         build job: 'Huxley - Install'
     }
+    stage ('Documentation') {
+        build job: 'Huxley - Documentation'
+    }
 }
