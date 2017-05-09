@@ -1,19 +1,16 @@
 package huxley.model.discord;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
+import huxley.HuxleyApp;
 import huxley.commands.*;
+import huxley.model.games.GameCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import huxley.HuxleyApp;
-import huxley.model.games.GameCalendar;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class that represent the Discord client BOT Huxley.
@@ -32,20 +29,13 @@ public class DiscordClient {
      * Constructor.
      */
     private DiscordClient() {
-        Properties configuration = new Properties();
-
         try {
-            // Loading config
-            configuration.load(DiscordClient.class.getResourceAsStream("/configuration.properties"));
-
             // Building commands
             commands = new ArrayList<>();
             initCommands();
 
             // Building Discord client
-            discordClient = new ClientBuilder().withToken(configuration.getProperty("discord.token")).login();
-        } catch (IOException e) {
-            LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.io"), e));
+            discordClient = new ClientBuilder().withToken(HuxleyApp.getConfiguration().getProperty("discord.token")).login();
         } catch (DiscordException e) {
             LOGGER.error(String.format(HuxleyApp.getLanguage().getProperty("exception.discord"), e));
         }
