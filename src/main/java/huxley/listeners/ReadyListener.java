@@ -1,19 +1,15 @@
 package huxley.listeners;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import huxley.HuxleyApp;
 import huxley.model.discord.DiscordClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.ReadyEvent;
-import sx.blah.discord.util.Image;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Discord Listener when bot is ready to work.
@@ -27,11 +23,8 @@ public class ReadyListener {
         LOGGER.info("Huxley is connected.");
 
         IDiscordClient client = DiscordClient.getDiscordClient();
-        URL imgUrl = ReadyListener.class.getResource("/Huxley.png");
-        File img = new File(imgUrl.toURI());
         LOGGER.info("Set visual parameters for the bot.");
         client.changeUsername(HuxleyApp.getConfiguration().getProperty("huxley.name"));
-        client.changeAvatar(Image.forFile(img));
         client.changePlayingText(HuxleyApp.getLanguage().getProperty("huxley.playing.to"));
         client.idle();
 
