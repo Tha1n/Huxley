@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.ReadyEvent;
+import sx.blah.discord.util.Image;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -26,6 +27,7 @@ public class ReadyListener {
         LOGGER.info("Set visual parameters for the bot.");
         client.changeUsername(HuxleyApp.getConfiguration().getProperty("huxley.name"));
         client.changePlayingText(HuxleyApp.getLanguage().getProperty("huxley.playing.to"));
+        client.changeAvatar(Image.forStream("png", ReadyListener.class.getResourceAsStream("/Huxley.png")));
         client.idle();
 
         LOGGER.info("Register message listener.");
