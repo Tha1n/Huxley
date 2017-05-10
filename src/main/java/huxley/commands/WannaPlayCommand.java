@@ -136,6 +136,6 @@ public class WannaPlayCommand extends AbstractCommand {
      */
     @Override
     public String helpDetailed() {
-        return HuxleyApp.getLanguage().getProperty("command.wp.help.detailed");
+        return String.format(HuxleyApp.getLanguage().getProperty("command.wp.help.detailed"), COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("wanna.play.prefix"));
     }
 }

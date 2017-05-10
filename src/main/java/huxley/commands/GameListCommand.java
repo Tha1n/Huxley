@@ -131,7 +131,7 @@ public class GameListCommand extends AbstractCommand {
      */
     @Override
     public String help() {
-        return null;
+        return HuxleyApp.getLanguage().getProperty("command.gl.help");
     }
 
     /**
@@ -139,6 +139,9 @@ public class GameListCommand extends AbstractCommand {
      */
     @Override
     public String helpDetailed() {
-        return null;
+        return String.format(HuxleyApp.getLanguage().getProperty("command.gl.help.detailed"),
+                COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("game.list.prefix"),
+                COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("game.list.prefix"),
+                COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("game.list.prefix"));
     }
 }

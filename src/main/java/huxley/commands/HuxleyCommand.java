@@ -49,15 +49,29 @@ public class HuxleyCommand extends AbstractCommand {
                     content = cmd.help();
                 }
                 DiscordMessageUtils.sendMessage(message.getChannel(), content);
+                return true;
             } else {
                 String content = String.format(HuxleyApp.getLanguage().getProperty("command.huxley.global"),
-                        COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"),
-                        COMMANDS_PROPERTIES.getProperty("commands.prefix"), COMMANDS_PROPERTIES.getProperty("huxley.prefix"));
+                        formatCommandsNameDisplay());
                 DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Format a displayable list of commands.
+     * @return
+     */
+    private String formatCommandsNameDisplay() {
+        StringBuilder result = new StringBuilder();
+
+        for (ICommand cmd: DiscordClient.getCommands()) {
+            result.append(String.format("- %s\n", cmd.getName()));
+        }
+
+        return result.toString();
     }
 
     /**
