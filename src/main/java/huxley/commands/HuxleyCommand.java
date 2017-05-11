@@ -62,12 +62,13 @@ public class HuxleyCommand extends AbstractCommand {
 
     /**
      * Format a displayable list of commands.
-     * @return
+     *
+     * @return The list of commands in String format.
      */
     private String formatCommandsNameDisplay() {
         StringBuilder result = new StringBuilder();
 
-        for (ICommand cmd: DiscordClient.getCommands()) {
+        for (ICommand cmd : DiscordClient.getCommands()) {
             result.append(String.format("- %s\n", cmd.getName()));
         }
 

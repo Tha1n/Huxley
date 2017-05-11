@@ -11,19 +11,23 @@ import sx.blah.discord.util.DiscordException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class that represent the Discord client BOT Huxley.
  * Created by alxqu on 16/04/2017.
  */
 public class DiscordClient {
-	private static final Logger LOGGER = LoggerFactory.getLogger(DiscordClient.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiscordClient.class);
     private static DiscordClient instance;
 
     private IDiscordClient discordClient;
     private List<ICommand> commands;
 
-    private static final GameCalendar gameCalendar = new GameCalendar();
+    /**
+     * Game Calendar - Will be init when OnReady event will be received on listener.
+     */
+    private static GameCalendar gameCalendar = null;
 
     /**
      * Constructor.
@@ -53,6 +57,7 @@ public class DiscordClient {
 
     /**
      * Get instance of {@link DiscordClient}.
+     *
      * @return The instance.
      */
     private static DiscordClient getInstance() {
@@ -64,6 +69,7 @@ public class DiscordClient {
 
     /**
      * Get {@link IDiscordClient} object.
+     *
      * @return The {@link IDiscordClient} object.
      */
     public static IDiscordClient getDiscordClient() {
@@ -72,6 +78,7 @@ public class DiscordClient {
 
     /**
      * Get the list of commands.
+     *
      * @return The list of commands.
      */
     public static List<ICommand> getCommands() {
@@ -80,10 +87,18 @@ public class DiscordClient {
 
     /**
      * Get the game calendar.
+     *
      * @return The game calendar.
      */
-	public static GameCalendar getGamecalendar() {
-		return gameCalendar;
-	}
+    public static GameCalendar getGamecalendar() {
+        if (gameCalendar == null) {
+            initGameCalendar();
+        }
+        return gameCalendar;
+    }
 
+    public static void initGameCalendar() {
+        List<Long> guildIDs = getDiscordClient().getGuilds().stream().map(g -> g.getLongID()).collect(Collectors.toList());
+        gameCalendar = new GameCalendar(guildIDs);
+    }
 }

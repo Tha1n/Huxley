@@ -27,8 +27,11 @@ public class ReadyListener {
         LOGGER.info("Set visual parameters for the bot.");
         client.changeUsername(HuxleyApp.getConfiguration().getProperty("huxley.name"));
         client.changePlayingText(HuxleyApp.getLanguage().getProperty("huxley.playing.to"));
-        client.changeAvatar(Image.forStream("png", ReadyListener.class.getResourceAsStream("/Huxley.png")));
+//        client.changeAvatar(Image.forStream("png", ReadyListener.class.getResourceAsStream("/Huxley.png")));
         client.idle();
+
+        LOGGER.info("Init GameCalendar for all guilds.");
+        DiscordClient.initGameCalendar();
 
         LOGGER.info("Register message listener.");
         client.getDispatcher().registerListener(new MessageListener());

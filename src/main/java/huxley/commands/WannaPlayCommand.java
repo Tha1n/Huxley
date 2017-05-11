@@ -62,7 +62,7 @@ public class WannaPlayCommand extends AbstractCommand {
                 // If date was not given
                 if (datePart == null) {
                     LocalDateTime today = LocalDateTime.now();
-                    DecimalFormat mFormat= new DecimalFormat("00");
+                    DecimalFormat mFormat = new DecimalFormat("00");
                     datePart = String.format("%s/%s", mFormat.format(today.getDayOfMonth()), mFormat.format(today.getMonthValue()));
                 }
 
@@ -79,14 +79,15 @@ public class WannaPlayCommand extends AbstractCommand {
                 String gameAlias = this.matcher.group(GROUP_ALIAS_NUMBER);
 
                 IUser emitter = message.getAuthor();
+                Long guildId = message.getGuild().getLongID();
                 // Register player to planning
-                DiscordClient.getGamecalendar().addPlanningForPlayer(emitter, gameAlias, start, end);
+                DiscordClient.getGamecalendar().addPlanningForPlayer(emitter, gameAlias, start, end, guildId);
 
                 // Get available players for this game for this time
-                List<IUser> availablePlayers = DiscordClient.getGamecalendar().getAvailablePlayers(emitter, gameAlias, start, end);
+                List<IUser> availablePlayers = DiscordClient.getGamecalendar().getAvailablePlayers(emitter, gameAlias, start, end, guildId);
 
                 // Send message with players list
-                if (! availablePlayers.isEmpty()) {
+                if (!availablePlayers.isEmpty()) {
                     String content = formatMessageToSend(emitter, gameAlias, availablePlayers);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                 } else {
@@ -105,8 +106,9 @@ public class WannaPlayCommand extends AbstractCommand {
 
     /**
      * Build the Huxley response for the command.
-     * @param emitter {@link sx.blah.discord.handle.obj.IUser} object that is the émitter of the original message.
-     * @param gameAlias String that is the game alias.
+     *
+     * @param emitter          {@link sx.blah.discord.handle.obj.IUser} object that is the émitter of the original message.
+     * @param gameAlias        String that is the game alias.
      * @param availablePlayers List of {@link sx.blah.discord.handle.obj.IUser}.
      * @return Huxley response string.
      */

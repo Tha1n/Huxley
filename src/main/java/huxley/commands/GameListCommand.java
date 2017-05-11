@@ -47,20 +47,21 @@ public class GameListCommand extends AbstractCommand {
     public boolean request(IMessage message) {
         boolean result = false;
         if (super.request(message)) {
+            Long guildId = message.getGuild().getLongID();
             EGameListChoice choice = EGameListChoice.ADD.getTypeByInput(matcher.group(1));
             String content;
             switch (choice) {
                 case ALL:
-                    content = DiscordClient.getGamecalendar().getGames().getGameListString();
+                    content = DiscordClient.getGamecalendar().getGames().getGameListString(guildId);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                     result = true;
                     break;
                 case ADD:
-                    content = addGame();
+                    content = addGame(guildId);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                     break;
                 case DELETE:
-                    content = removeGame();
+                    content = removeGame(guildId);
                     DiscordMessageUtils.sendMessage(message.getChannel(), content);
                     break;
                 case UNKNOWN:
@@ -75,9 +76,11 @@ public class GameListCommand extends AbstractCommand {
 
     /**
      * Add a game to the list.
+     *
+     * @param guildId The guild ID.
      * @return The response from Huxley.
      */
-    private String addGame() {
+    private String addGame(Long guildId) {
         String result = StringUtils.EMPTY;
 
         String name = matcher.group(GAME_NAME_GROUP).replace("\"", StringUtils.EMPTY);
@@ -91,7 +94,7 @@ public class GameListCommand extends AbstractCommand {
             tmpAliases = tmpAliases.trim();
             List<String> aliases = Arrays.asList(tmpAliases.split(StringUtils.SPACE));
             try {
-                DiscordClient.getGamecalendar().getGames().addGameAndSave(name, aliases);
+                DiscordClient.getGamecalendar().getGames().addGameAndSave(name, aliases, guildId);
                 result = HuxleyApp.getLanguage().getProperty("command.gl.game.added");
             } catch (ExistingGameException e) {
                 LOGGER.error(String.format("%s", e));
@@ -106,15 +109,17 @@ public class GameListCommand extends AbstractCommand {
 
     /**
      * Remove a game in the list
+     *
+     * @param guildId The guild ID.
      * @return The response from Huxley.
      */
-    private String removeGame() {
+    private String removeGame(Long guildId) {
         String result = StringUtils.EMPTY;
 
         String alias = matcher.group(GAME_ALIAS_GROUP);
         try {
-            Game g = DiscordClient.getGamecalendar().getGames().findGameByAlias(alias);
-            DiscordClient.getGamecalendar().getGames().removeGameAndSave(g);
+            Game g = DiscordClient.getGamecalendar().getGames().findGameByAlias(alias, guildId);
+            DiscordClient.getGamecalendar().getGames().removeGameAndSave(g, guildId);
             result = HuxleyApp.getLanguage().getProperty("command.gl.game.remove");
         } catch (NotFoundGameException e) {
             LOGGER.error(String.format("%s", e));
