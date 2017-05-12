@@ -23,6 +23,7 @@ Cette commande permet d'obtenir de l'aide pour les commandes d'Huxley. La comman
 
 ### WannaPlay
 Cette commande permet de dire à Huxley qu'on souhaite jouer à un jeu, de telle heure à telle heure, pour un jour donné (optionnel). La commande s'appelle de la façon suivante: `!wp {Alias du jeu} {Heure de début au format XX:XX} -> {Heure de fin au format XX:XX} {Date de fin au format JJ/MM/AAAA (optionnel)}`
+Si d'autres joueurs sont disponibles pour jouer, Huxley vous préviendra automatiquement !
 
 *Exemples*
 ```Java
