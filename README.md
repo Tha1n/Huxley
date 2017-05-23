@@ -50,7 +50,7 @@ Cette commande permet de connaître l'intégralité des jeux que Huxley connait 
 
 
 
-Huxley vous souhaite bons jeux et vous dit à la prochaine !
+Huxley vous souhaite bon jeu et vous dit à la prochaine !
 ===========================================================
 <div style="text-align:center">
 <img src="https://raw.githubusercontent.com/Tha1n/Huxley/master/src/main/resources/Huxley.png" alt="Logo Huxley">
