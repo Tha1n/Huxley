@@ -206,7 +206,7 @@ public class GamesHandler {
      */
     private String getGameListFilePath(Long guildId) throws UnsupportedEncodingException {
         String path = System.getProperty("user.dir");
-        path = URLDecoder.decode(String.format("%s/games%d.properties", path, guildId), "UTF-8");
+        path = URLDecoder.decode(String.format("%s/games%d.json", path, guildId), "UTF-8");
         return path;
     }
 
